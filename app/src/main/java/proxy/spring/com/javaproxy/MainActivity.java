@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         findViewById(R.id.test).setOnClickListener(this);
         tvLog = (TextView) findViewById(R.id.log);
+
     }
 
     @Override
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         };
         HelloProxyHandler2 handler = new HelloProxyHandler2(helloWorld);
-        //创建动态代理对象
+        //create proxy
         HelloProxy proxy = (HelloProxy) Proxy.newProxyInstance(
                 helloWorld.getClass().getClassLoader(),
                 helloWorld.getClass().getInterfaces(),
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         proxy.sayHello("spring1");
         proxy.sayHello2("spring2");
 
-        //create proxy by factory
+        //create proxy by factory: discover impl
         HelloProxy2 proxy2 = new ProxyFactory().newProxyInstance(HelloProxy2.class);
         proxy2.sayHello2("spring3");
         proxy2.sayHello("spring4");
